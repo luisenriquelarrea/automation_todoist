@@ -1,0 +1,6 @@
+const props = {}
+
+props.email = ""
+props.password = ""
+
+module.exports = props
