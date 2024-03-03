@@ -12,6 +12,9 @@ const props = require('./app_properties');
   // Navigate the page to a URL
   await page.goto('https://trello.com/b/QvHVksDa/personal-work-goals');
 
+  // Set screen size
+  await page.setViewport({width: 1080, height: 1024});
+
   const taskSelector = "[data-list-id='55d39827b8629b45cb9c7231'] .NdQKKfeqJDDdX3"
 
   await page.waitForSelector(taskSelector)
@@ -41,5 +44,13 @@ const props = require('./app_properties');
     await page.click("button[type=submit]");
   }
   
+  await delay(1000)
+
   await browser.close();
 })();
+
+function delay(time) {
+  return new Promise(function(resolve) { 
+      setTimeout(resolve, time)
+  });
+}
