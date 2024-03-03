@@ -5,7 +5,7 @@ const props = require('./app_properties');
   // Launch the browser and open a new blank page
   const browser = await puppeteer.launch({
     headless: false,
-    slowMo: 200
+    slowMo: 100
   });
   const page = await browser.newPage();
 
@@ -31,6 +31,15 @@ const props = require('./app_properties');
   await page.type('#element-3', props.password);
   await page.click("button[type=submit]");
   await page.waitForNavigation();
+
+  await page.waitForSelector(".plus_add_button")
+    .then(() => console.log('got it'));
+
+  await page.click(".plus_add_button");
+  for(let i = 0; i < tasks.length; i++){
+    await page.type("[data-placeholder='Task name']", tasks[i]);
+    await page.click("button[type=submit]");
+  }
   
   await browser.close();
 })();
