@@ -61,8 +61,11 @@ const props = require('./app_properties');
     await page.type("[data-placeholder='Task name']", tasks[i]);
     await page.click("button[type=submit]");
   }
+
+  // Display tasks
+  await page.click("a[href='/app/project/inbox-2329602863']");
   
-  await delay(1000)
+  await delay(2000)
 
   await browser.close();
 })();
